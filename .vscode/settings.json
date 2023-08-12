@@ -30,5 +30,7 @@
     ],
     "java.checkstyle.configuration": "${workspaceFolder}\\SeriouslyCommonLib\\xbotcheckstyle.xml",
     "java.checkstyle.properties": {
-      "basedir":"SeriouslyCommonLib"}
+      "basedir": "SeriouslyCommonLib"
+    },
+    "java.debug.settings.onBuildFailureProceed": true
 }
