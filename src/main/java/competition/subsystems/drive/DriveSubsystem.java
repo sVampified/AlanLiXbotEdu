@@ -18,6 +18,9 @@ public class DriveSubsystem extends BaseDriveSubsystem {
     public final XCANTalon frontLeft;
     public final XCANTalon frontRight;
 
+    
+    private boolean precisionMode = false;
+
     private final double simulatedEncoderFactor = 256.0 * 39.3701; //256 "ticks" per meter, and ~39 inches in a meter
 
     @Inject
@@ -36,16 +39,32 @@ public class DriveSubsystem extends BaseDriveSubsystem {
         this.register();
     }
 
+    public void togglePrecisionMode() {
+
+        precisionMode = !precisionMode;
+    }
+   
+
     public void tankDrive(double leftPower, double rightPower) {
         // You'll need to take these power values and assign them to all of the motors.
         // As
         // an example, here is some code that has the frontLeft motor to spin according
         // to
-        // the value of leftPower:
+        // the value of leftPower:  
+
+        
+
+        if (precisionMode) {
+            leftPower /= 2;
+            rightPower /= 2;
+        } 
+        
         frontLeft.simpleSet(leftPower);
         frontRight.simpleSet(rightPower);
     }
-    
+
+   
+
     @Override
     public void periodic() {
         super.periodic();
