@@ -35,9 +35,8 @@ public class DriveToPositionCommand extends BaseCommand {
     @Override
     public void initialize() {
         // If you have some one-time setup, do it here.
-        System.out.println(goalPosition);
-        currentPosition = pose.getPosition();
-        lastPosition = currentPosition;
+
+
     }
 
     @Override
@@ -53,14 +52,28 @@ public class DriveToPositionCommand extends BaseCommand {
         currentPosition = pose.getPosition();
         travelingDistance = goalPosition - currentPosition;
         velocity = currentPosition - lastPosition;
-        if (travelingDistance < 0) {
-            drive.tankDrive(-1, -1);
-        } else if (travelingDistance > 0) {
+        double power = travelingDistance * 2 - velocity * 7;
+        drive.tankDrive(power, power);
+        lastPosition = currentPosition;
+
+
+
+
+
+        /*if (travelingDistance > 0) {
             drive.tankDrive(1, 1);
-        }
-
-
+            if (travelingDistance <= 2 && velocity > 2.5) {
+                drive.tankDrive(-1,-1);
+            }
+        } else {
+                drive.tankDrive(-1, -1);
+        */
     }
+
+        /*if(velocity < 2.7 && velocity > 2.5) {
+            drive.tankDrive(-0.5, -0.5);
+        }
+        */
 
     @Override
     public boolean isFinished() {
