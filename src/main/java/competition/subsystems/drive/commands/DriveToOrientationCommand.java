@@ -2,21 +2,25 @@ package competition.subsystems.drive.commands;
 
 import javax.inject.Inject;
 
+import competition.subsystems.pose.PoseSubsystem;
 import xbot.common.command.BaseCommand;
 import competition.subsystems.drive.DriveSubsystem;
 
 public class DriveToOrientationCommand extends BaseCommand {
 
     DriveSubsystem drive;
+    double goalHeading;
 
     @Inject
     public DriveToOrientationCommand(DriveSubsystem driveSubsystem) {
         this.drive = driveSubsystem;
+
     }
 
     public void setTargetHeading(double heading) {
         // This method will be called by the test, and will give you a goal heading.
         // You'll need to remember this target position and use it in your calculations.
+        goalHeading = heading;
     }
 
     @Override
@@ -30,6 +34,17 @@ public class DriveToOrientationCommand extends BaseCommand {
         // - Gets the robot to turn to the target orientation
         // - Gets the robot stop (or at least be moving really really slowly) at the
         // target position
+        double travelingDistance;
+        double velocity;
+        double currentPosition;
+
+
+        double power;
+
+
+
+
+
 
         // How you do this is up to you. If you get stuck, ask a mentor or student for
         // some hints!

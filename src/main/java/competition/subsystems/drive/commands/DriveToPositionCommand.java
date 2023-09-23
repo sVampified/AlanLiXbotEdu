@@ -52,7 +52,7 @@ public class DriveToPositionCommand extends BaseCommand {
         currentPosition = pose.getPosition();
         travelingDistance = goalPosition - currentPosition;
         velocity = currentPosition - lastPosition;
-        double power = travelingDistance * 2 - velocity * 7;
+        double power = travelingDistance * .293828 - velocity * .1566;
         drive.tankDrive(power, power);
         lastPosition = currentPosition;
 
@@ -79,8 +79,8 @@ public class DriveToPositionCommand extends BaseCommand {
     public boolean isFinished() {
         // Modify this to return true once you have met your goal,
         // and you're moving fairly slowly (ideally stopped)
-        if (travelingDistance == 0) {
-             return true;
+        if (goalPosition > pose.getPosition()) {
+            return  true;
         }
         return false;
     }

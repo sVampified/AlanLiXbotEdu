@@ -19,10 +19,20 @@ public class TurnLeft90DegreesCommand extends BaseCommand {
 
     @Override
     public void initialize() {
+
     }
 
     @Override
     public void execute() {
+        double currentPosition = pose.getPosition();
+        double degrees = pose.getCurrentHeading().getDegrees();
+        double travelingDistance = degrees - currentPosition;
+        double lastPosition;
+        double velocity = currentPosition - lastPosition;
+        double power = travelingDistance * .293828 - velocity * .1566;
+        drive.tankDrive(power, power);
+        lastPosition = currentPosition;
+
     }
 
 }
