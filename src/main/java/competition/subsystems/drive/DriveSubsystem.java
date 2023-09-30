@@ -36,7 +36,7 @@ public class DriveSubsystem extends BaseDriveSubsystem {
         frontLeft.createTelemetryProperties(this.getPrefix(), "frontLeft");
         frontRight.createTelemetryProperties(this.getPrefix(), "frontRight");
 
-        this.register();
+        //this.register();
     }
 
     public void togglePrecisionMode() {
