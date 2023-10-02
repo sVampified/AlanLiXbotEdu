@@ -14,7 +14,11 @@
     <remote-repository>
       <option name="id" value="WPILocal" />
       <option name="name" value="WPILocal" />
+<<<<<<< Updated upstream
       <option name="url" value="file:/$PROJECT_DIR$/../../../../../Public/wpilib/2023/maven/" />
+=======
+      <option name="url" value="file:/$PROJECT_DIR$/../../../../Public/wpilib/2023/maven/" />
+>>>>>>> Stashed changes
     </remote-repository>
     <remote-repository>
       <option name="id" value="WPIFRCMavenVendorCacheRelease" />
@@ -71,5 +75,13 @@
       <option name="name" value="maven3" />
       <option name="url" value="https://mvnrepository.com/artifact/org.zeromq/jeromq" />
     </remote-repository>
+<<<<<<< Updated upstream
+    <remote-repository>
+      <option name="id" value="WPILocal" />
+      <option name="name" value="WPILocal" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../../../Public/wpilib/2023/maven/" />
+    </remote-repository>
+=======
+>>>>>>> Stashed changes
   </component>
 </project>

@@ -37,8 +37,11 @@ public class TurnLeft90DegreesCommand extends BaseCommand {
         velocity = currentDegrees - lastDegrees;
         double power = travelingDistance * 0.0397 - velocity * 1.999;
         drive.tankDrive(-power, power);
-
         lastDegrees = currentDegrees;
+
+        if (goalDegrees == 240) {
+            goalDegrees = -120;
+        }
 
 
     }
