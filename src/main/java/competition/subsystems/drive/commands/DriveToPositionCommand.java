@@ -52,7 +52,7 @@ public class DriveToPositionCommand extends BaseCommand {
         currentPosition = pose.getPosition();
         travelingDistance = goalPosition - currentPosition;
         velocity = currentPosition - lastPosition;
-        double power = travelingDistance * .299828 - velocity * 1.899;
+        double power = travelingDistance * .399828 - velocity * 1.799;
         drive.tankDrive(power, power);
         lastPosition = currentPosition;
 

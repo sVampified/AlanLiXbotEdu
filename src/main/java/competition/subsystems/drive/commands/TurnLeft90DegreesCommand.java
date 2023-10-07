@@ -15,6 +15,7 @@ public class TurnLeft90DegreesCommand extends BaseCommand {
     double goalDegrees;
     double currentDegrees;
     double velocity;
+    double startingAngle;
 
     @Inject
     public TurnLeft90DegreesCommand(DriveSubsystem driveSubsystem, PoseSubsystem pose) {
@@ -24,24 +25,31 @@ public class TurnLeft90DegreesCommand extends BaseCommand {
 
     @Override
     public void initialize() {
-        currentDegrees = pose.getCurrentHeading().getDegrees();
-        goalDegrees = currentDegrees + 90;
+        startingAngle = pose.getCurrentHeading().getDegrees();
+        goalDegrees = 90;
     }
 
     @Override
     public void execute() {
 
 
-        currentDegrees = pose.getCurrentHeading().getDegrees();
+        currentDegrees = pose.getCurrentHeading().getDegrees() - startingAngle;
+
+        if (pose.getCurrentHeading().getDegrees() < 0 && startingAngle > 0) {
+            currentDegrees = 360 + pose.getCurrentHeading().getDegrees() - startingAngle;
+        }
+
+
         travelingDistance = goalDegrees - currentDegrees;
         velocity = currentDegrees - lastDegrees;
-        double power = travelingDistance * 0.0397 - velocity * 1.999;
+        double power = travelingDistance * 0.2397 - velocity * 1.999;
         drive.tankDrive(-power, power);
         lastDegrees = currentDegrees;
 
-        if (goalDegrees == 240) {
-            goalDegrees = -120;
-        }
+//        if (goalDegrees == 240) {
+//            goalDegrees = -120;
+//            drive.tankDrive(power, -power);
+//        }
 
 
     }

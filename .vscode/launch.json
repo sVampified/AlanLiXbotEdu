@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Launch LinearTestVisualizer",
+      "request": "launch",
+      "mainClass": "xbot.edubot.linear.LinearTestVisualizer",
+      "projectName": "AlanLiXbotEdu"
+    },
+    {
+      "type": "java",
       "name": "Launch RotationTestVisualizer",
       "request": "launch",
       "mainClass": "xbot.edubot.rotation.RotationTestVisualizer",
@@ -14,7 +21,7 @@
         "LD_LIBRARY_PATH": "${workspaceFolder}/build/jni/release",
         "DYLD_LIBRARY_PATH": "${workspaceFolder}/build/jni/release"
       },
-      "cwd": "${workspaceFolder}/build/jni/release",
+      "cwd": "${workspaceFolder}/build/jni/release"
     },
     {
       "type": "java",
@@ -26,19 +33,19 @@
         "LD_LIBRARY_PATH": "${workspaceFolder}/build/jni/release",
         "DYLD_LIBRARY_PATH": "${workspaceFolder}/build/jni/release"
       },
-      "cwd": "${workspaceFolder}/build/jni/release",
+      "cwd": "${workspaceFolder}/build/jni/release"
     },
     {
       "type": "wpilib",
       "name": "WPILib Desktop Debug",
       "request": "launch",
-      "desktop": true,
+      "desktop": true
     },
     {
       "type": "wpilib",
       "name": "WPILib roboRIO Debug",
       "request": "launch",
-      "desktop": false,
+      "desktop": false
     }
   ]
 }

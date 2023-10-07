@@ -16,6 +16,7 @@ public class DriveToOrientationCommand extends BaseCommand {
     double currentDegrees;
     double velocity;
     double goalRealHeading;
+    double startingAngle;
 
     @Inject
     public DriveToOrientationCommand(DriveSubsystem driveSubsystem, PoseSubsystem pose) {
@@ -34,6 +35,7 @@ public class DriveToOrientationCommand extends BaseCommand {
     public void initialize() {
         // If you have some one-time setup, do it here.
         goalRealHeading = goalDegrees;
+
     }
 
     @Override
@@ -48,7 +50,11 @@ public class DriveToOrientationCommand extends BaseCommand {
 
 
 
-        currentDegrees = pose.getCurrentHeading().getDegrees();
+        currentDegrees = pose.getCurrentHeading().getDegrees() - startingAngle;
+
+        if (pose.getCurrentHeading().getDegrees() < 0 && startingAngle > 0) {
+            currentDegrees = 360 + pose.getCurrentHeading().getDegrees() - startingAngle;
+        }
 
         travelingDistance = goalDegrees - currentDegrees;
         velocity = currentDegrees - lastDegrees;
@@ -57,10 +63,9 @@ public class DriveToOrientationCommand extends BaseCommand {
         lastDegrees = currentDegrees;
 
 
-
-//        if (goalRealHeading > 180 || goalRealHeading < -180) {
-//            goalDegrees -= 360;
-//        }
+        if (goalRealHeading > 180 || goalRealHeading < -180) {
+      goalDegrees -= 360;
+       }
 
 
 
