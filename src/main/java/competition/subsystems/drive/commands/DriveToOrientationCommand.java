@@ -22,7 +22,6 @@ public class DriveToOrientationCommand extends BaseCommand {
     public DriveToOrientationCommand(DriveSubsystem driveSubsystem, PoseSubsystem pose) {
         this.drive = driveSubsystem;
         this.pose = pose;
-
     }
 
     public void setTargetHeading(double heading) {
@@ -35,7 +34,7 @@ public class DriveToOrientationCommand extends BaseCommand {
     public void initialize() {
         // If you have some one-time setup, do it here.
         goalRealHeading = goalDegrees;
-
+        startingAngle = pose.getCurrentHeading().getDegrees();
     }
 
     @Override
@@ -46,26 +45,28 @@ public class DriveToOrientationCommand extends BaseCommand {
         // target position
 
 
-
-
-
-
         currentDegrees = pose.getCurrentHeading().getDegrees() - startingAngle;
+        System.out.println("This is starting angle " + startingAngle);
 
         if (pose.getCurrentHeading().getDegrees() < 0 && startingAngle > 0) {
             currentDegrees = 360 + pose.getCurrentHeading().getDegrees() - startingAngle;
         }
 
-        travelingDistance = goalDegrees - currentDegrees;
+
+        System.out.println("This is the goal heading " + goalRealHeading);
+        System.out.println("This is the current degrees " + currentDegrees);
+        System.out.println("This is actual current degrees " + pose.getCurrentHeading().getDegrees());
+
+        travelingDistance = goalRealHeading - currentDegrees;
         velocity = currentDegrees - lastDegrees;
         double power = travelingDistance * 0.0397 - velocity * 1.999;
         drive.tankDrive(-power, power);
         lastDegrees = currentDegrees;
 
 
-        if (goalRealHeading > 180 || goalRealHeading < -180) {
-      goalDegrees -= 360;
-       }
+//        if (goalRealHeading > 180 || goalRealHeading < -180) {
+//            goalDegrees -= 360;
+//       }
 
 
 
@@ -82,7 +83,7 @@ public class DriveToOrientationCommand extends BaseCommand {
         // and you're moving fairly slowly (ideally stopped)
         travelingDistance = goalRealHeading - currentDegrees;
         velocity = currentDegrees - lastDegrees;
-        if (Math.abs(travelingDistance) < 0.1 && Math.abs(velocity) < 0.1) {
+        if (Math.abs(travelingDistance) < 0.01 && Math.abs(velocity) < 0.01) {
             drive.tankDrive(0,0);
             return true;
         }
